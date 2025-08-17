@@ -29,7 +29,7 @@ def propose_recipe(ingredients):
     llm = ChatOpenAI(model_name = "gpt-4o-mini", temperature = 0.5)
     messages = [
         SystemMessage(content = "You are a cooking expert. Please suggest a recipe using the following ingredients."),
-        HumanMessage(content = template)
+        HumanMessage(content = template.format(ingredients=ingredients))
     ]
     result = llm(messages)
     return result.content
@@ -45,7 +45,7 @@ def propose_translation(text):
     llm = ChatOpenAI(model_name = "gpt-4o-mini", temperature = 0.5)
     messages = [
         SystemMessage(content = "You are a translator. Please translate the following text into English."),
-        HumanMessage(content = template)
+        HumanMessage(content = template.format(text=text))
     ]
 
     result = llm(messages)
